@@ -1,7 +1,9 @@
 const express=require("express")
 const mongoose=require("mongoose")
+require("dotenv").config()
 
 const {newpdt, allpdt, products, removepdt, editpdt} = require("./controllers/products")
+const { register } = require("./controllers/users")
 
 //db connection
 const dburl="mongodb://localhost:27017/byepass"
@@ -25,6 +27,8 @@ app.get("/products/:id",products)
 app.post("/removeproduct/:id",removepdt)
 
 app.post("/editproduct/:id",editpdt)
+
+app.post("/register",register)
 
 //connection
 app.listen(4000,()=>console.log("Port 4000"))
