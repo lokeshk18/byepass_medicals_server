@@ -2,7 +2,6 @@ const Product = require("../models/products")
 
 module.exports.newpdt = async (req,res)=>{
     var pdt=req.body;
-    // console.log(pdt);
     const product = new Product(pdt);
     console.log(product);
     await product.save();

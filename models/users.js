@@ -2,9 +2,17 @@ const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 
 const UserSchema = new Schema({
-    name:String,
-    email:String,
-    password:Sring
-})
+    name: { type:String , required:true},
+    email: { type:String , required:true},
+    password: { type:String , required:true},
+    isAdmin: {
+        type:boolean,
+        default:false, 
+    }
+    // createdAt:Date.now()
+} , { timestamps : true })
 
 module.exports = mongoose.model('User',UserSchema)
+
+//timestamp provides createdAt and updatedAt fns
+//automatically stores it
