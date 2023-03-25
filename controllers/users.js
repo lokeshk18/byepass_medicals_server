@@ -20,6 +20,22 @@ module.exports.register = async (req,res)=>{
     }
 }
 
+
 module.exports.login = async (req,res)=>{
-    
+    try{
+        const user = await User.findOne({email:req.body.email})
+        !user && res.status(401).json("User not found");
+
+        const hashedPassword = CryptoJS.AES.decrypt( 
+            user.password,
+            process.env.PASS_SEC
+        )
+        const password = hashedPassword.toString(CryptoJS.enc.Utf8);
+        password !== req.body.password && res.status(401).json("Wrong Password");
+
+        res.status(201).json("Login Successful");
+    }
+    catch(err){
+        res.status(500).json(err)
+    }
 }
