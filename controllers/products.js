@@ -15,10 +15,19 @@ module.exports.allpdt = async (req,res)=>{
     res.send("Received");
 }
 
-module.exports.categorypdt = async(req,res)=>{
+module.exports.products = async(req,res)=>{
     var products= await Product.find({category:req.params.id});
     console.log(products)
     res.send("Got it");
+}
+
+module.exports.editpdt = async(req,res)=>{
+    console.log("Ai");
+    var pdt = req.body
+    console.log(req.params.id)
+    var product = await Product.findByIdAndUpdate(req.params.id,pdt)
+    await product.save()
+    res.send("Edited")
 }
 
 module.exports.removepdt = async(req,res)=>{

@@ -1,7 +1,7 @@
 const express=require("express")
 const mongoose=require("mongoose")
 
-const {newpdt, allpdt, categorypdt, removepdt} = require("./controllers/products")
+const {newpdt, allpdt, products, removepdt, editpdt} = require("./controllers/products")
 
 const dburl="mongodb://localhost:27017/byepass"
 mongoose.connect(dburl)
@@ -18,8 +18,10 @@ app.post("/newproduct",newpdt)
 
 app.get("/allproducts",allpdt)
 
-app.get("/categorypdt",categorypdt)
+app.get("/products/:id",products)
 
-app.post("/removepdt/:id",removepdt)
+app.post("/removeproduct/:id",removepdt)
+
+app.post("/editproduct/:id",editpdt)
 
 app.listen(4000,()=>console.log("Port 4000"))
