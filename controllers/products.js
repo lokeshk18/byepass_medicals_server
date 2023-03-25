@@ -22,10 +22,8 @@ module.exports.products = async(req,res)=>{
 }
 
 module.exports.editpdt = async(req,res)=>{
-    console.log("Ai");
     var pdt = req.body
-    console.log(req.params.id)
-    var product = await Product.findByIdAndUpdate(req.params.id,pdt)
+    const product = await Product.findByIdAndUpdate(req.params.id,pdt)
     await product.save()
     res.send("Edited")
 }
