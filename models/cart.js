@@ -9,7 +9,6 @@ const CartSchema = new Schema({
             quantity: { type: Number,default:1}
         }
     ]
-    // createdAt:Date.now()
 } , { timestamps : true })
 
 module.exports = mongoose.model('Cart',CartSchema)

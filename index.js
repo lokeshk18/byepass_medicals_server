@@ -32,5 +32,7 @@ app.post("/register",register)
 
 app.post("/login",login)
 
+app.post("")
+
 //connection
 app.listen(4000,()=>console.log("Port 4000"))
