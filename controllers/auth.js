@@ -34,8 +34,10 @@ module.exports.login = async (req,res)=>{
             process.env.PASS_SEC
         )
         const originalPassword = hashedPassword.toString(CryptoJS.enc.Utf8);
-        originalPassword !== req.body.password && res.status(401).json("Wrong Password");
-
+        // originalPassword !== req.body.password && res.status(401).json("Wrong Password");
+        if(originalPassword!=req.body.password){
+            return res.status(401).json("Wrong Password")
+        }
         const accessToken = jwt.sign({
             id: user._id,
             isAdmin: user.isAdmin
@@ -50,6 +52,6 @@ module.exports.login = async (req,res)=>{
         res.status(200).json({...others,accessToken});
     }
     catch(err){
-        res.status(500).json(err);
+        res.status(500).json(err)
     }
 }
