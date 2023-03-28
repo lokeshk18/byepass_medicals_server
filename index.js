@@ -5,6 +5,7 @@ require("dotenv").config()
 const {newpdt, allpdt, products, removepdt, editpdt} = require("./controllers/products")
 const { register , login} = require("./controllers/auth")
 const {verifyAdmin , verifyToken} = require("./controllers/verify")
+const { editUser } = require("./controllers/user")
 
 //db connection
 const dburl="mongodb://localhost:27017/byepass"
@@ -27,13 +28,13 @@ app.get("/products/:id",products)
 
 app.post("/removeproduct/:id",verifyAdmin,removepdt)
 
-app.post("/editproduct/:id",verifyAdmin,editpdt)
+app.put("/editproduct/:id",verifyAdmin,editpdt)
 
 app.post("/register",register)
 
 app.post("/login",login)
 
-app.post("")
+app.put("/edituser/:id",editUser)
 
 //connection
 app.listen(4000,()=>console.log("Port 4000"))

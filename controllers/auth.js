@@ -10,6 +10,7 @@ module.exports.register = async (req,res)=>{
             req.body.password,
             process.env.PASS_SEC
         ).toString(),
+        address:req.body.address,
         isAdmin : req.body.isAdmin
     });
     
@@ -49,6 +50,6 @@ module.exports.login = async (req,res)=>{
         res.status(200).json({...others,accessToken});
     }
     catch(err){
-        // res.status(500).json(err);
+        res.status(500).json(err);
     }
 }
