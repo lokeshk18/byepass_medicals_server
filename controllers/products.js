@@ -4,7 +4,6 @@ module.exports.newpdt = async (req,res)=>{
     try{
         var pdt=req.body;
         const product = new Product(pdt);
-        console.log(product);
         await product.save();
         res.status(201).json("Product Added");
     }
@@ -16,7 +15,6 @@ module.exports.newpdt = async (req,res)=>{
 module.exports.allpdt = async (req,res)=>{
     try{
         var products= await Product.find({})
-        console.log(products)
         res.status(201).json("Received");
     }
     catch(err){
@@ -27,8 +25,8 @@ module.exports.allpdt = async (req,res)=>{
 module.exports.products = async(req,res)=>{
     try{
         var products= await Product.find({category:req.params.id});
-        console.log(products)
-        res.status(201).json("Got it");
+        console.log(req.params.id)
+        res.status(201).json(products);
     }
     catch(err){
         res.status(401).json(err)

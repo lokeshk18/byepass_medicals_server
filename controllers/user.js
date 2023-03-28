@@ -11,4 +11,12 @@ module.exports.editUser = async (req,res)=>{
     }
 }
 
-// module.exports.
+module.exports.getUser = async (req,res)=>{
+    try{
+        const allUsers = await User.find({})
+        res.status(201).json("Got All Users")
+    }
+    catch(err){
+        res.status(401).json(err)
+    }
+}
