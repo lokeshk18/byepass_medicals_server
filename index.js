@@ -3,8 +3,8 @@ const mongoose=require("mongoose")
 require("dotenv").config()
 
 const {newpdt, allpdt, products, removepdt, editpdt} = require("./controllers/products")
-const { register , login} = require("./controllers/users")
-const {verifyAdmin , verifyUser , verifyToken} = require("./controllers/verify")
+const { register , login} = require("./controllers/auth")
+const {verifyAdmin , verifyToken} = require("./controllers/verify")
 
 //db connection
 const dburl="mongodb://localhost:27017/byepass"

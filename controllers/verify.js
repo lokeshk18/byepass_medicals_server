@@ -34,7 +34,6 @@ module.exports.verifyAdmin = async (req,res,next)=>{
             next();
         }
         else{
-            console.log(req.user)
             res.status(401).json("Not Admin");
         }
     })
