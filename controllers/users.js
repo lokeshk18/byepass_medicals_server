@@ -9,7 +9,8 @@ module.exports.register = async (req,res)=>{
         password : CryptoJS.AES.encrypt(
             req.body.password,
             process.env.PASS_SEC
-        ).toString()
+        ).toString(),
+        isAdmin : req.body.isAdmin
     });
     
     try{

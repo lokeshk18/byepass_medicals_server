@@ -4,6 +4,7 @@ require("dotenv").config()
 
 const {newpdt, allpdt, products, removepdt, editpdt} = require("./controllers/products")
 const { register , login} = require("./controllers/users")
+const {verifyAdmin , verifyUser , verifyToken} = require("./controllers/verify")
 
 //db connection
 const dburl="mongodb://localhost:27017/byepass"
@@ -18,15 +19,15 @@ app.use(express.json()) //parses incoming req obj as json obj
 app.use(express.urlencoded({extended:true})) //for using nested obj if false means only string or arrays
 
 //routes
-app.post("/newproduct",newpdt)
+app.post("/newproduct",verifyAdmin,newpdt)
 
 app.get("/allproducts",allpdt)
 
 app.get("/products/:id",products)
 
-app.post("/removeproduct/:id",removepdt)
+app.post("/removeproduct/:id",verifyAdmin,removepdt)
 
-app.post("/editproduct/:id",editpdt)
+app.post("/editproduct/:id",verifyAdmin,editpdt)
 
 app.post("/register",register)
 

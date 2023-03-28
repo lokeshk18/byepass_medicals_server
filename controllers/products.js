@@ -22,7 +22,7 @@ module.exports.products = async(req,res)=>{
 
 module.exports.editpdt = async(req,res)=>{
     var pdt = req.body
-    const product = await Product.findByIdAndUpdate(req.params.id,pdt)
+    const product = await Product.findByIdAndUpdate(req.params.id,pdt) //new true means it returns updated doc
     await product.save()
     res.send("Edited")
 }
