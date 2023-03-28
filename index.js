@@ -26,7 +26,7 @@ app.get("/allproducts",allpdt)
 
 app.get("/products/:id",products)
 
-app.post("/removeproduct/:id",verifyAdmin,removepdt)
+app.delete("/removeproduct/:id",verifyAdmin,removepdt)
 
 app.put("/editproduct/:id",verifyAdmin,editpdt)
 
