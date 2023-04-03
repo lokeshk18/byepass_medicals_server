@@ -6,6 +6,7 @@ const {newpdt, allpdt, products, removepdt, editpdt} = require("./controllers/pr
 const { register , login} = require("./controllers/auth")
 const {verifyAdmin , verifyToken} = require("./controllers/verify")
 const { editUser, getUser } = require("./controllers/user")
+const { addCart } = require("./controllers/cart")
 
 //db connection
 const dburl="mongodb://localhost:27017/byepass"
@@ -26,6 +27,8 @@ app.get("/allproducts",allpdt)
 
 app.get("/products/:id",products)
 
+// app.get("/products/")
+
 app.put("/editproduct/:id",verifyAdmin,editpdt)
 
 app.delete("/removeproduct/:id",verifyAdmin,removepdt)
@@ -36,7 +39,9 @@ app.post("/login",login)
 
 app.put("/edituser/:id",verifyToken,editUser)
 
-app.get("/getusers",getUser)
+app.get("/getusers",verifyAdmin,getUser)
+
+app.post("/addcart",addCart)
 
 //connection
 app.listen(4000,()=>console.log("Port 4000"))
