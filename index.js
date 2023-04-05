@@ -2,7 +2,7 @@ const express=require("express")
 const mongoose=require("mongoose")
 require("dotenv").config()
 
-const {newpdt, allpdt, products, removepdt, editpdt} = require("./controllers/products")
+const {newpdt, allpdt, products, removepdt, editpdt, viewproduct} = require("./controllers/products")
 const { register , login} = require("./controllers/auth")
 const {verifyAdmin , verifyToken} = require("./controllers/verify")
 const { editUser, getUser } = require("./controllers/user")
@@ -27,7 +27,7 @@ app.get("/allproducts",allpdt)
 
 app.get("/products/:id",products)
 
-// app.get("/products/")
+app.get("/products/:category/:id",viewproduct)
 
 app.put("/editproduct/:id",verifyAdmin,editpdt)
 

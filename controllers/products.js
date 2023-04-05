@@ -33,6 +33,16 @@ module.exports.products = async(req,res)=>{
     }
 }
 
+module.exports.viewproduct = async (req,res)=>{
+    try{
+        const product = await Product.findById(req.params.id);
+        res.status(200).json(product);
+    }
+    catch(err){
+        res.status(401).json(err);
+    }
+}
+
 module.exports.editpdt = async(req,res)=>{
     try{
         var pdt = req.body
