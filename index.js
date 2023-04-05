@@ -7,7 +7,7 @@ const { register , login} = require("./controllers/auth")
 const {verifyAdmin , verifyToken} = require("./controllers/verify")
 const { editUser, getUser } = require("./controllers/user")
 const { addCart, getCart } = require("./controllers/cart")
-const { addOrder, getOrders } = require("./controllers/order")
+const { addOrder, getOrder, changeStatus } = require("./controllers/order")
 
 //db connection
 const dburl="mongodb://localhost:27017/byepass"
@@ -48,6 +48,10 @@ app.get("/getcart",getCart)
 
 app.post("/addorder",addOrder)
 
-app.get("/orders",getOrders)
+app.get("/orders",getOrder)
+
+app.put("/status/:id",changeStatus)
+
+
 //connection
 app.listen(4000,()=>console.log("Port 4000"))
