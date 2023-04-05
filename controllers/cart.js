@@ -24,3 +24,13 @@ module.exports.addCart = async (req,res)=>{
         res.status(401).json(err);
     }
 }
+
+module.exports.getCart = async (req,res)=>{
+    try{
+        const cart = await Cart.find({userId:req.body.userId})
+        res.status(200).json(cart);
+    }
+    catch(err){
+        res.status(400).json(err);
+    }
+}

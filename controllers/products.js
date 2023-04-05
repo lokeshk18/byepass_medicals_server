@@ -15,7 +15,7 @@ module.exports.newpdt = async (req,res)=>{
 module.exports.allpdt = async (req,res)=>{
     try{
         var products= await Product.find({})
-        res.status(201).json("Received");
+        res.status(201).json(products);
     }
     catch(err){
         res.status(401).json(err)

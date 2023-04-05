@@ -14,7 +14,7 @@ module.exports.editUser = async (req,res)=>{
 module.exports.getUser = async (req,res)=>{
     try{
         const allUsers = await User.find({})
-        res.status(201).json("Got All Users")
+        res.status(201).json(allUsers)
     }
     catch(err){
         res.status(401).json(err)
