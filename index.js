@@ -1,12 +1,13 @@
 const express=require("express")
 const mongoose=require("mongoose")
+const cors=require("cors")
 require("dotenv").config()
 
 const {newpdt, allpdt, products, removepdt, editpdt, viewproduct} = require("./controllers/products")
 const { register , login} = require("./controllers/auth")
 const {verifyAdmin , verifyToken} = require("./controllers/verify")
 const { editUser, getUser } = require("./controllers/user")
-const { addCart, getCart } = require("./controllers/cart")
+const { addCart, getCart, removeCart } = require("./controllers/cart")
 const { addOrder, getOrder, changeStatus } = require("./controllers/order")
 
 //db connection
@@ -20,6 +21,13 @@ db.once("open",()=>console.log("Database connected"))
 const app=express()
 app.use(express.json()) //parses incoming req obj as json obj
 app.use(express.urlencoded({extended:true})) //for using nested obj if false means only string or arrays
+
+//cors
+app.use(cors({
+    origin: "*",
+    credentials:true
+}))
+
 
 //routes
 app.post("/newproduct",verifyAdmin,newpdt)
@@ -44,7 +52,9 @@ app.get("/getusers",verifyAdmin,getUser)
 
 app.post("/addcart",addCart)
 
-app.get("/getcart",getCart)
+app.get("/getcart/:id",getCart)
+
+app.post("/removecart/:id",removeCart)
 
 app.post("/addorder",addOrder)
 

@@ -11,7 +11,8 @@ const ProductSchema = new Schema({
     precaution: String,
     directions: String,
     storage: String,
-    dosage: String
+    dosage: String,
+    image:String
 })
 
 module.exports = mongoose.model('Product',ProductSchema)

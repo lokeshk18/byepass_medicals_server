@@ -13,12 +13,14 @@ module.exports.register = async (req,res)=>{
         address:req.body.address,
         isAdmin : req.body.isAdmin
     });
-    
+    console.log(newUser);
     try{
         const savedUser = await newUser.save();
+        console.log("created")
         res.status(201).json(savedUser)
     }
     catch(err){
+        console.log("nope");
         res.status(500).json(err)
     }
 }
@@ -48,7 +50,7 @@ module.exports.login = async (req,res)=>{
 
         const { password, ...others} = user._doc;
         //password is separately stored so that we dont display it
-
+        console.log("Logged")
         res.status(200).json({...others,accessToken});
     }
     catch(err){
