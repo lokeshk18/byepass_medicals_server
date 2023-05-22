@@ -23,7 +23,6 @@ module.exports.allpdt = async (req,res)=>{
 }
 
 module.exports.products = async(req,res)=>{
-    console.log(req.params.id)  
     try{
         var products= await Product.find({category:req.params.id});
         // console.log(req.params.id)
